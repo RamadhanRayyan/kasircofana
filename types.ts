@@ -7,8 +7,6 @@ export enum UserRole {
 export enum Category {
   MAKANAN = 'Makanan',
   MINUMAN = 'Minuman',
-
-  ALAT_TULIS = 'Alat Tulis',
   LAINNYA = 'Lainnya'
 }
 

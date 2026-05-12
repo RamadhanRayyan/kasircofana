@@ -56,7 +56,7 @@ export const INITIAL_PRODUCTS: Product[] = [
   {
     id: '5',
     name: 'Buku Tulis Sidu 38',
-    category: Category.ALAT_TULIS,
+    category: Category.LAINNYA,
     price: 45000,
     cost: 38000,
     stock: 5,
