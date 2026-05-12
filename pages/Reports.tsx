@@ -198,8 +198,8 @@ const Reports: React.FC<ReportsProps> = ({ transactions, products }) => {
 
     // Header
     doc.setFontSize(22);
-    doc.setTextColor(16, 185, 129); // Emerald
-    doc.text("Laporan Toko Amanah", pageWidth / 2, 20, { align: 'center' });
+    doc.setTextColor(16, 185, 129); // amber
+    doc.text("Laporan Cofana Shop", pageWidth / 2, 20, { align: 'center' });
     
     doc.setFontSize(10);
     doc.setTextColor(100);
@@ -274,7 +274,7 @@ const Reports: React.FC<ReportsProps> = ({ transactions, products }) => {
         doc.text(`Halaman ${i} dari ${totalPages}`, pageWidth / 2, doc.internal.pageSize.height - 10, { align: 'center' });
     }
 
-    doc.save(`Laporan_Toko_Amanah_${reportPeriod}_${new Date().toISOString().split('T')[0]}.pdf`);
+    doc.save(`Laporan_Cofana_Shop_${reportPeriod}_${new Date().toISOString().split('T')[0]}.pdf`);
   };
 
   return (
@@ -282,11 +282,11 @@ const Reports: React.FC<ReportsProps> = ({ transactions, products }) => {
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div className="text-center md:text-left">
           <h1 className="text-2xl font-bold text-slate-900 tracking-tight">Analitik & Laporan</h1>
-          <p className="text-sm text-slate-500 mt-1">Analisa performa bisnis Koperasi Anda secara mendalam.</p>
+          <p className="text-sm text-slate-500 mt-1">Analisa performa bisnis toko Anda secara mendalam.</p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3">
           <select 
-            className="w-full sm:w-auto px-4 py-3 bg-white border border-slate-200 rounded-2xl text-xs font-black uppercase tracking-widest focus:ring-2 focus:ring-emerald-500 outline-none"
+            className="w-full sm:w-auto px-4 py-3 bg-white border border-slate-200 rounded-2xl text-xs font-black uppercase tracking-widest focus:ring-2 focus:ring-amber-500 outline-none"
             value={reportPeriod}
             onChange={(e) => setReportPeriod(e.target.value as any)}
           >
@@ -295,7 +295,7 @@ const Reports: React.FC<ReportsProps> = ({ transactions, products }) => {
             <option value="Monthly">📊 Bulan Ini</option>
             <option value="Yearly">📊 Tahunan</option>
           </select>
-          <button onClick={handleExportPDF} className="flex items-center justify-center gap-2 px-6 py-3 bg-emerald-600 text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-emerald-700 active:scale-95 transition-all shadow-xl shadow-emerald-200">
+          <button onClick={handleExportPDF} className="flex items-center justify-center gap-2 px-6 py-3 bg-amber-600 text-white rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-amber-700 active:scale-95 transition-all shadow-xl shadow-amber-200">
             <Download size={18} />
             Ekspor PDF
           </button>
@@ -339,7 +339,7 @@ const Reports: React.FC<ReportsProps> = ({ transactions, products }) => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div className="bg-white p-6 rounded-3xl border border-slate-200 shadow-sm flex items-center gap-4">
-              <div className="w-14 h-14 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center">
+              <div className="w-14 h-14 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center">
                 <DollarSign size={28} />
               </div>
               <div>
@@ -417,7 +417,7 @@ const Reports: React.FC<ReportsProps> = ({ transactions, products }) => {
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b border-slate-100">
+              <tr className="border-b border-amber-100">
                 <th className="pb-4 text-xs font-black text-slate-400 uppercase tracking-widest w-12 text-center">No</th>
                 <th className="pb-4 text-xs font-black text-slate-400 uppercase tracking-widest pl-4">Produk</th>
                 <th className="pb-4 text-xs font-black text-slate-400 uppercase tracking-widest pl-4">Kategori</th>
@@ -428,7 +428,7 @@ const Reports: React.FC<ReportsProps> = ({ transactions, products }) => {
             <tbody className="divide-y divide-slate-50">
               {stats.popularProducts.length > 0 ? (
                 stats.popularProducts.map((p, i) => (
-                  <tr key={i} className="group hover:bg-slate-50/50 transition-colors">
+                  <tr key={i} className="group hover:bg-amber-50/50 transition-colors">
                     <td className="py-4 text-sm font-bold text-slate-400 text-center">
                       {i + 1 === 1 && <span className="w-6 h-6 bg-yellow-400 text-white rounded-full flex items-center justify-center mx-auto text-[10px]">1</span>}
                       {i + 1 === 2 && <span className="w-6 h-6 bg-slate-200 text-slate-600 rounded-full flex items-center justify-center mx-auto text-[10px]">2</span>}
@@ -439,9 +439,9 @@ const Reports: React.FC<ReportsProps> = ({ transactions, products }) => {
                       <p className="text-sm font-bold text-slate-800">{p.name}</p>
                     </td>
                     <td className="py-4 pl-4">
-                      <span className="px-2 py-1 bg-slate-100 text-slate-500 rounded-lg text-[10px] font-black uppercase tracking-wider">{p.category}</span>
+                      <span className="px-2 py-1 bg-stone-100 text-slate-500 rounded-lg text-[10px] font-black uppercase tracking-wider">{p.category}</span>
                     </td>
-                    <td className="py-4 text-right pr-4 text-sm font-bold text-emerald-600">
+                    <td className="py-4 text-right pr-4 text-sm font-bold text-amber-600">
                       {p.quantity} <span className="text-[10px] text-slate-400 uppercase ml-0.5">Unit</span>
                     </td>
                     <td className="py-4 text-right text-sm font-bold text-slate-900">

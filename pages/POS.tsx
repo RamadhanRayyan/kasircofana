@@ -189,7 +189,7 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
     // Design Configuration
     const margin = 5;
     const contentWidth = pageWidth - (margin * 2);
-    const primaryColor = [16, 185, 129]; // Emerald-600 RGB
+    const primaryColor = [16, 185, 129]; // amber-600 RGB
     const grayColor = [100, 116, 139]; // Slate-500
     const lightGray = [226, 232, 240]; // Slate-200
 
@@ -211,7 +211,7 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
 
     // --- HEADER ---
     // Logo placeholder / Brand Name
-    doc.setFillColor(236, 253, 245); // Emerald-50 background
+    doc.setFillColor(236, 253, 245); // amber-50 background
     doc.roundedRect(margin, yPos, contentWidth, 25, 3, 3, 'F');
     
     yPos += 8;
@@ -275,7 +275,7 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
     yPos += 6;
 
     // --- TOTALS SECTION ---
-    doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]); // Emerald-600
+    doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]); // amber-600
     doc.roundedRect(margin, yPos, contentWidth, 20, 2, 2, 'F');
     
     let totalY = yPos + 6;
@@ -315,7 +315,7 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
                 <input 
                   type="text" 
                   placeholder="Cari Produk..." 
-                  className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-100 rounded-2xl focus:ring-2 focus:ring-emerald-500 outline-none text-[13px] font-semibold transition-all"
+                  className="w-full pl-11 pr-4 py-3 bg-amber-50 border border-amber-100 rounded-2xl focus:ring-2 focus:ring-amber-500 outline-none text-[13px] font-semibold transition-all"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -325,8 +325,8 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
                   onClick={() => setActiveCategory('All')}
                   className={`px-5 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest whitespace-nowrap transition-all border-2 ${
                     activeCategory === 'All' 
-                    ? 'bg-emerald-600 text-white border-emerald-600 shadow-xl shadow-emerald-200' 
-                    : 'bg-white text-slate-500 border-slate-100 hover:border-emerald-200 hover:text-emerald-600 shadow-sm'
+                    ? 'bg-amber-600 text-white border-amber-600 shadow-xl shadow-amber-200' 
+                    : 'bg-white text-slate-500 border-amber-100 hover:border-amber-200 hover:text-amber-600 shadow-sm'
                   }`}
                 >
                   Semua
@@ -337,8 +337,8 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
                     onClick={() => setActiveCategory(cat)}
                     className={`px-5 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest whitespace-nowrap transition-all border-2 ${
                       activeCategory === cat 
-                      ? 'bg-emerald-600 text-white border-emerald-600 shadow-xl shadow-emerald-200' 
-                      : 'bg-white text-slate-500 border-slate-100 hover:border-emerald-200 hover:text-emerald-600 shadow-sm'
+                      ? 'bg-amber-600 text-white border-amber-600 shadow-xl shadow-amber-200' 
+                      : 'bg-white text-slate-500 border-amber-100 hover:border-amber-200 hover:text-amber-600 shadow-sm'
                     }`}
                   >
                     {cat}
@@ -354,10 +354,10 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
                   key={product.id}
                   onClick={() => addToCart(product)}
                   disabled={product.stock <= 0}
-                  className={`group flex flex-col bg-white border border-slate-100 rounded-[32px] overflow-hidden hover:border-emerald-400 hover:shadow-2xl hover:shadow-emerald-900/10 transition-all duration-500 text-left p-5 h-full min-h-[180px] relative ${product.stock <= 0 ? 'opacity-40 grayscale pointer-events-none' : 'shadow-sm shadow-slate-200/50'}`}
+                  className={`group flex flex-col bg-white border border-amber-100 rounded-[32px] overflow-hidden hover:border-amber-400 hover:shadow-2xl hover:shadow-amber-900/10 transition-all duration-500 text-left p-5 h-full min-h-[180px] relative ${product.stock <= 0 ? 'opacity-40 grayscale pointer-events-none' : 'shadow-sm shadow-slate-200/50'}`}
                 >
                   <div className="flex items-start justify-between mb-4">
-                    <div className="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 shadow-sm border border-emerald-100/50 group-hover:scale-110 transition-transform">
+                    <div className="w-10 h-10 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 shadow-sm border border-amber-100/50 group-hover:scale-110 transition-transform">
                       <Box size={18} />
                     </div>
                     {product.stock <= product.minStock && product.stock > 0 && (
@@ -366,13 +366,13 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
                   </div>
                   <div className="flex-1 flex flex-col min-w-0">
                     <div className="mb-3">
-                      <p className="text-[9px] font-black text-emerald-600 uppercase mb-1 tracking-widest opacity-80">{product.category}</p>
-                      <h4 className="text-[12px] lg:text-[14px] font-black text-slate-800 line-clamp-2 leading-tight group-hover:text-emerald-700 transition-colors uppercase tracking-tight">{product.name}</h4>
+                      <p className="text-[9px] font-black text-amber-600 uppercase mb-1 tracking-widest opacity-80">{product.category}</p>
+                      <h4 className="text-[12px] lg:text-[14px] font-black text-slate-800 line-clamp-2 leading-tight group-hover:text-amber-700 transition-colors uppercase tracking-tight">{product.name}</h4>
                     </div>
                     
-                    <div className="mt-auto pt-3 border-t border-slate-50 flex items-center justify-between gap-2">
-                      <p className="text-[14px] lg:text-[16px] font-black text-emerald-700 tracking-tight shrink-0">{formatCurrency(product.price)}</p>
-                      <div className={`px-2 py-1 rounded-lg flex items-center gap-1.5 ${product.stock <= product.minStock ? 'bg-orange-50 text-orange-600' : 'bg-slate-50 text-slate-500'}`}>
+                    <div className="mt-auto pt-3 border-t border-amber-50 flex items-center justify-between gap-2">
+                      <p className="text-[14px] lg:text-[16px] font-black text-amber-700 tracking-tight shrink-0">{formatCurrency(product.price)}</p>
+                      <div className={`px-2 py-1 rounded-lg flex items-center gap-1.5 ${product.stock <= product.minStock ? 'bg-orange-50 text-orange-600' : 'bg-amber-50 text-slate-500'}`}>
                         <div className={`w-1 h-1 rounded-full ${product.stock <= product.minStock ? 'bg-orange-500' : 'bg-slate-400'}`}></div>
                         <span className="text-[9px] font-black uppercase tracking-wider">
                           Stok: {product.stock}
@@ -384,7 +384,7 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
               ))}
               {filteredProducts.length === 0 && (
                 <div className="col-span-full py-20 text-center">
-                  <div className="w-20 h-20 bg-slate-50 rounded-[40px] flex items-center justify-center mx-auto mb-4 border border-slate-100">
+                  <div className="w-20 h-20 bg-amber-50 rounded-[40px] flex items-center justify-center mx-auto mb-4 border border-amber-100">
                     <Search size={32} className="text-slate-200" />
                   </div>
                   <p className="text-sm font-black text-slate-300 uppercase tracking-widest">Produk tidak ditemukan</p>
@@ -398,10 +398,10 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
             fixed md:static inset-x-0 bottom-0 z-50 bg-white md:bg-white border-t md:border border-slate-200 md:rounded-[40px] shadow-2xl md:shadow-xl md:shadow-slate-200/50 flex flex-col overflow-hidden transition-all duration-500 ease-out
             ${isMobileCartVisible ? 'h-[85vh] translate-y-0 rounded-t-[40px]' : 'h-0 translate-y-1/2 md:h-full md:translate-y-0 md:w-80 xl:w-[400px]'}
           `}>
-            <div className="p-5 sm:p-6 border-b border-slate-50 flex items-center justify-between bg-slate-50/30">
+            <div className="p-5 sm:p-6 border-b border-amber-50 flex items-center justify-between bg-amber-50/30">
               <h3 className="font-black text-slate-800 flex items-center gap-3 text-sm xl:text-base uppercase tracking-widest">
-                <ShoppingCart size={20} className="text-emerald-600" />
-                Keranjang <span className="bg-emerald-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px]">{cart.reduce((a,b)=>a+b.quantity, 0)}</span>
+                <ShoppingCart size={20} className="text-amber-600" />
+                Keranjang <span className="bg-amber-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px]">{cart.reduce((a,b)=>a+b.quantity, 0)}</span>
               </h3>
               <div className="flex items-center gap-4">
                 <button onClick={() => {
@@ -409,31 +409,31 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
                     showConfirm('Kosongkan Keranjang', 'Apakah Anda yakin ingin menghapus semua item?', () => setCart([]));
                   }
                 }} className="text-[10px] text-red-500 font-black uppercase tracking-widest hover:text-red-600 transition-colors">Clear</button>
-                <button className="md:hidden p-2 bg-slate-100 text-slate-400 rounded-2xl" onClick={() => setIsMobileCartVisible(false)}><ChevronDown size={24} /></button>
+                <button className="md:hidden p-2 bg-stone-100 text-slate-400 rounded-2xl" onClick={() => setIsMobileCartVisible(false)}><ChevronDown size={24} /></button>
               </div>
             </div>
 
             <div className="flex-1 overflow-y-auto p-5 sm:p-6 space-y-4">
               {cart.length === 0 ? (
                 <div className="h-full flex flex-col items-center justify-center text-center py-20">
-                  <div className="w-20 h-20 bg-emerald-50 rounded-[40px] flex items-center justify-center text-emerald-200 mb-6">
+                  <div className="w-20 h-20 bg-amber-50 rounded-[40px] flex items-center justify-center text-amber-200 mb-6">
                     <ShoppingCart size={32} />
                   </div>
                   <p className="text-[11px] font-black text-slate-300 uppercase tracking-widest max-w-[150px] leading-relaxed">Belum ada item yang dipilih</p>
                 </div>
               ) : (
                 cart.map(item => (
-                  <div key={item.id} className="flex items-center gap-4 p-4 bg-slate-50/50 rounded-[28px] border border-slate-100 group">
+                  <div key={item.id} className="flex items-center gap-4 p-4 bg-amber-50/50 rounded-[28px] border border-amber-100 group">
                     <div className="flex-1 min-w-0">
-                      <p className="text-[12px] font-black text-slate-800 truncate leading-tight group-hover:text-emerald-700 transition-colors">{item.name}</p>
+                      <p className="text-[12px] font-black text-slate-800 truncate leading-tight group-hover:text-amber-700 transition-colors">{item.name}</p>
                       {item.selectedVariants && item.selectedVariants.length > 0 && (
                           <p className="text-[9px] text-slate-400 font-bold mt-0.5 line-clamp-1">
                               + {item.selectedVariants.map(v => v.name).join(', ')}
                           </p>
                       )}
-                      <p className="text[11px] text-emerald-600 font-black mt-1 tracking-tight">{formatCurrency(calculateItemPrice(item))}</p>
+                      <p className="text[11px] text-amber-600 font-black mt-1 tracking-tight">{formatCurrency(calculateItemPrice(item))}</p>
                     </div>
-                    <div className="flex items-center gap-2 bg-white p-1 rounded-2xl shadow-sm border border-slate-100">
+                    <div className="flex items-center gap-2 bg-white p-1 rounded-2xl shadow-sm border border-amber-100">
                       <button onClick={() => updateQuantity(item.id, -1)} className="w-7 h-7 flex items-center justify-center text-slate-400 hover:text-red-500 transition-colors shrink-0"><Minus size={14} /></button>
                       <input 
                         type="number" 
@@ -456,7 +456,7 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
                         onFocus={(e) => e.target.select()}
                         className="text-[13px] font-black w-10 text-center text-slate-700 bg-transparent border-none outline-none focus:ring-0 p-0"
                       />
-                      <button onClick={() => updateQuantity(item.id, 1)} className="w-7 h-7 flex items-center justify-center text-slate-400 hover:text-emerald-600 transition-colors shrink-0"><Plus size={14} /></button>
+                      <button onClick={() => updateQuantity(item.id, 1)} className="w-7 h-7 flex items-center justify-center text-slate-400 hover:text-amber-600 transition-colors shrink-0"><Plus size={14} /></button>
                     </div>
                     <button onClick={() => removeFromCart(item.id)} className="w-8 h-8 flex items-center justify-center text-slate-300 hover:text-red-500 transition-colors"><Trash2 size={16} /></button>
                   </div>
@@ -464,7 +464,7 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
               )}
             </div>
 
-            <div className="p-6 sm:p-8 border-t border-slate-100 bg-slate-50/50 space-y-5 rounded-b-[40px]">
+            <div className="p-6 sm:p-8 border-t border-amber-100 bg-amber-50/50 space-y-5 rounded-b-[40px]">
               <div className="space-y-2">
                 <div className="flex justify-between text-[11px] font-black uppercase tracking-widest text-slate-400">
                   <span>Subtotal</span>
@@ -473,7 +473,7 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
               </div>
               <div className="flex justify-between items-center py-4 border-t border-dashed border-slate-200">
                 <span className="text-xs font-black text-slate-900 uppercase tracking-widest">Total Bayar</span>
-                <span className="text-2xl font-black text-emerald-700 tracking-tight">{formatCurrency(total)}</span>
+                <span className="text-2xl font-black text-amber-700 tracking-tight">{formatCurrency(total)}</span>
               </div>
               <div className="flex flex-col gap-3">
                 <div className="flex gap-3">
@@ -502,7 +502,7 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
                 <button 
                   onClick={() => handleCheckout('Cash')}
                   disabled={cart.length === 0 || isProcessing}
-                  className="w-full flex items-center justify-center gap-3 py-5 bg-emerald-600 text-white rounded-[24px] hover:bg-emerald-700 transition-all shadow-xl shadow-emerald-200 font-black uppercase text-[13px] tracking-widest disabled:opacity-40 disabled:shadow-none active:scale-95 disabled:active:scale-100 disabled:cursor-not-allowed"
+                  className="w-full flex items-center justify-center gap-3 py-5 bg-amber-600 text-white rounded-[24px] hover:bg-amber-700 transition-all shadow-xl shadow-amber-200 font-black uppercase text-[13px] tracking-widest disabled:opacity-40 disabled:shadow-none active:scale-95 disabled:active:scale-100 disabled:cursor-not-allowed"
                 >
                   {isProcessing ? (
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -519,7 +519,7 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
           {!isMobileCartVisible && (
             <button 
               onClick={() => setIsMobileCartVisible(true)}
-              className="md:hidden fixed bottom-8 right-8 z-50 w-16 h-16 bg-emerald-600 text-white rounded-[32px] shadow-2xl flex items-center justify-center animate-bounce shadow-emerald-400/30"
+              className="md:hidden fixed bottom-8 right-8 z-50 w-16 h-16 bg-amber-600 text-white rounded-[32px] shadow-2xl flex items-center justify-center animate-bounce shadow-amber-400/30"
             >
               <ShoppingCart size={28} />
               {cart.length > 0 && (
@@ -534,31 +534,31 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
           {isSuccessModalOpen && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/80 backdrop-blur-md p-4">
               <div className="bg-white rounded-[48px] w-full max-w-sm overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-300 border border-white/20">
-                <div className="bg-emerald-600 p-8 text-center text-white relative">
+                <div className="bg-amber-600 p-8 text-center text-white relative">
                   <div className="w-20 h-20 bg-white/20 rounded-[32px] flex items-center justify-center mx-auto mb-5 border border-white/30 backdrop-blur-sm">
                     <CheckCircle2 size={48} />
                   </div>
                   <h2 className="text-2xl font-black mb-1 uppercase tracking-tight">Sukses!</h2>
-                  <p className="text-emerald-100 text-[10px] uppercase font-black tracking-[0.2em] opacity-80">{lastTransaction?.id}</p>
+                  <p className="text-amber-100 text-[10px] uppercase font-black tracking-[0.2em] opacity-80">{lastTransaction?.id}</p>
                 </div>
                 <div className="p-8 space-y-6">
                   <div className="space-y-3 max-h-40 overflow-y-auto pr-2 custom-scrollbar">
                     {lastTransaction?.items.map(item => (
-                      <div key={item.id} className="flex justify-between text-[11px] font-bold border-b border-slate-50 pb-2 last:border-0">
+                      <div key={item.id} className="flex justify-between text-[11px] font-bold border-b border-amber-50 pb-2 last:border-0">
                         <span className="text-slate-500">{item.quantity}x {item.name}</span>
                         <span className="font-black text-slate-900">{formatCurrency(item.price * item.quantity)}</span>
                       </div>
                     ))}
                   </div>
-                  <div className="pt-5 border-t-2 border-dashed border-slate-100 flex justify-between items-center">
+                  <div className="pt-5 border-t-2 border-dashed border-amber-100 flex justify-between items-center">
                     <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Grand Total</span>
-                    <span className="text-2xl font-black text-emerald-700 tracking-tight">{formatCurrency(lastTransaction?.total || 0)}</span>
+                    <span className="text-2xl font-black text-amber-700 tracking-tight">{formatCurrency(lastTransaction?.total || 0)}</span>
                   </div>
                   <div className="flex gap-4 pt-4">
-                    <button onClick={handleExportReceipt} className="flex-1 flex items-center justify-center gap-2 py-4 bg-slate-100 text-slate-700 rounded-[20px] font-black text-[11px] uppercase tracking-widest hover:bg-slate-200 transition-all active:scale-95">
+                    <button onClick={handleExportReceipt} className="flex-1 flex items-center justify-center gap-2 py-4 bg-stone-100 text-slate-700 rounded-[20px] font-black text-[11px] uppercase tracking-widest hover:bg-slate-200 transition-all active:scale-95">
                       <Download size={18} />Ekspor PDF
                     </button>
-                    <button onClick={() => setIsSuccessModalOpen(false)} className="flex-1 py-4 bg-emerald-600 text-white rounded-[20px] font-black text-[11px] uppercase tracking-widest hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-100 active:scale-95">
+                    <button onClick={() => setIsSuccessModalOpen(false)} className="flex-1 py-4 bg-amber-600 text-white rounded-[20px] font-black text-[11px] uppercase tracking-widest hover:bg-amber-700 transition-all shadow-lg shadow-amber-100 active:scale-95">
                       Tutup
                     </button>
                   </div>
@@ -571,10 +571,10 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
       {isVariantModalOpen && selectedProductForVariant && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/80 backdrop-blur-md p-4 animate-in fade-in duration-200">
            <div className="bg-white rounded-3xl w-full max-w-sm overflow-hidden shadow-2xl animate-in zoom-in-95 duration-200">
-              <div className="p-5 border-b border-slate-100 bg-slate-50 flex justify-between items-center">
+              <div className="p-5 border-b border-amber-100 bg-amber-50 flex justify-between items-center">
                  <div>
                     <h3 className="font-black text-slate-800 text-sm">Pilih Tambahan</h3>
-                    <p className="text-[10px] text-emerald-600 font-bold uppercase tracking-wider">{selectedProductForVariant.name}</p>
+                    <p className="text-[10px] text-amber-600 font-bold uppercase tracking-wider">{selectedProductForVariant.name}</p>
                  </div>
                  <button onClick={() => setIsVariantModalOpen(false)} className="text-slate-400 hover:text-slate-600"><Plus size={24} className="rotate-45" /></button>
               </div>
@@ -592,22 +592,22 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
                             }}
                             className={`flex items-center justify-between p-3 rounded-xl border cursor-pointer transition-all ${
                                 isSelected 
-                                ? 'bg-emerald-50 border-emerald-500 shadow-md shadow-emerald-100' 
-                                : 'bg-white border-slate-200 hover:border-emerald-300'
+                                ? 'bg-amber-50 border-amber-500 shadow-md shadow-amber-100' 
+                                : 'bg-white border-slate-200 hover:border-amber-300'
                             }`}
                          >
-                            <span className={`text-xs font-bold ${isSelected ? 'text-emerald-800' : 'text-slate-700'}`}>{variant.name}</span>
-                            <span className={`text-[10px] font-black px-2 py-1 rounded-lg ${isSelected ? 'bg-emerald-200 text-emerald-800' : 'bg-slate-100 text-slate-500'}`}>
+                            <span className={`text-xs font-bold ${isSelected ? 'text-amber-800' : 'text-slate-700'}`}>{variant.name}</span>
+                            <span className={`text-[10px] font-black px-2 py-1 rounded-lg ${isSelected ? 'bg-amber-200 text-amber-800' : 'bg-stone-100 text-slate-500'}`}>
                                 +{formatCurrency(variant.price)}
                             </span>
                          </div>
                      )
                  })}
               </div>
-              <div className="p-5 border-t border-slate-100 bg-slate-50">
+              <div className="p-5 border-t border-amber-100 bg-amber-50">
                   <button 
                     onClick={handleVariantSubmit}
-                    className="w-full py-3 bg-emerald-600 text-white rounded-xl font-black text-xs uppercase tracking-widest shadow-lg shadow-emerald-200 hover:bg-emerald-700 active:scale-95 transition-all"
+                    className="w-full py-3 bg-amber-600 text-white rounded-xl font-black text-xs uppercase tracking-widest shadow-lg shadow-amber-200 hover:bg-amber-700 active:scale-95 transition-all"
                   >
                     Tambahkan ke Pesanan 
                     {tempSelectedVariants && tempSelectedVariants.length > 0 && ` (+${formatCurrency(tempSelectedVariants.reduce((a,b)=>a+b.price,0))})`}

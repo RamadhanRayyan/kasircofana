@@ -4,13 +4,13 @@ import { Product, Category, CooperativeAccount } from './types';
 export const INITIAL_ACCOUNTS: CooperativeAccount[] = [
   {
     id: '1',
-    name: 'Koperasi Maju Sejahtera - Pusat',
+    name: 'Cofana Shop - Pusat',
     address: 'Jl. Ahmad Yani No. 10, Jakarta',
     phone: '021-1234567'
   },
   {
     id: '2',
-    name: 'Koperasi Maju Sejahtera - Cabang Depok',
+    name: 'Cofana Shop - Cabang Depok',
     address: 'Jl. Margonda Raya No. 45, Depok',
     phone: '021-7654321'
   }

@@ -103,7 +103,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
   };
 
   return (
-    <div className="flex h-screen bg-slate-50 overflow-hidden relative">
+    <div className="flex h-screen bg-amber-50 overflow-hidden relative">
       {/* Mobile Menu Backdrop */}
       {isMobileMenuOpen && (
         <div 
@@ -114,16 +114,16 @@ const MainLayout: React.FC<MainLayoutProps> = ({
 
       {/* Sidebar - Integrated Responsive Design */}
       <aside className={`
-        fixed lg:static inset-y-0 left-0 z-[100] transition-all duration-300 bg-emerald-900 text-white flex flex-col no-print
+        fixed lg:static inset-y-0 left-0 z-[100] transition-all duration-300 bg-amber-900 text-white flex flex-col no-print
         ${isMobileMenuOpen ? 'translate-x-0 w-64' : '-translate-x-full lg:translate-x-0'}
         ${isSidebarOpen ? 'lg:w-64' : 'lg:w-20'}
       `}>
-        <div className="p-5 flex items-center justify-between h-16 shrink-0 border-b border-emerald-800">
+        <div className="p-5 flex items-center justify-between h-16 shrink-0 border-b border-amber-800">
           <div className="flex items-center gap-3 overflow-hidden">
-            <div className="w-9 h-9 bg-emerald-400 rounded-xl flex items-center justify-center font-black text-emerald-900 shrink-0 shadow-lg shadow-emerald-950/20">TA</div>
-            {(isSidebarOpen || isMobileMenuOpen) && <span className="text-xl font-black tracking-tight whitespace-nowrap">Toko Amanah</span>}
+            <div className="w-9 h-9 bg-amber-400 rounded-xl flex items-center justify-center font-black text-amber-900 shrink-0 shadow-lg shadow-amber-950/20">CS</div>
+            {(isSidebarOpen || isMobileMenuOpen) && <span className="text-xl font-black tracking-tight whitespace-nowrap">Cofana Shop</span>}
           </div>
-          <button className="lg:hidden p-1.5 hover:bg-emerald-800 rounded-lg" onClick={() => setIsMobileMenuOpen(false)}>
+          <button className="lg:hidden p-1.5 hover:bg-amber-800 rounded-lg" onClick={() => setIsMobileMenuOpen(false)}>
             <X size={20} />
           </button>
         </div>
@@ -136,11 +136,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({
           <SidebarItem to="/history" icon={<History size={20} />} label="Riwayat" expanded={isSidebarOpen || isMobileMenuOpen} onClick={() => setIsMobileMenuOpen(false)} />
         </nav>
 
-        <div className="p-3 border-t border-emerald-800 space-y-1">
+        <div className="p-3 border-t border-amber-800 space-y-1">
           <SidebarItem to="/settings" icon={<SettingsIcon size={20} />} label="Pengaturan" expanded={isSidebarOpen || isMobileMenuOpen} onClick={() => setIsMobileMenuOpen(false)} />
           <button 
             onClick={handleLogout}
-            className={`flex items-center gap-4 px-3 py-2.5 w-full text-emerald-300 hover:text-white hover:bg-emerald-800 rounded-xl transition-all ${!isSidebarOpen && !isMobileMenuOpen ? 'justify-center' : ''}`}
+            className={`flex items-center gap-4 px-3 py-2.5 w-full text-amber-300 hover:text-white hover:bg-amber-800 rounded-xl transition-all ${!isSidebarOpen && !isMobileMenuOpen ? 'justify-center' : ''}`}
           >
             <LogOut size={20} />
             {(isSidebarOpen || isMobileMenuOpen) && <span className="text-sm font-semibold">Keluar</span>}
@@ -157,7 +157,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
                 if (window.innerWidth < 1024) setIsMobileMenuOpen(true);
                 else setIsSidebarOpen(!isSidebarOpen);
               }}
-              className="p-2 hover:bg-slate-100 rounded-xl text-slate-500 transition-colors"
+              className="p-2 hover:bg-stone-100 rounded-xl text-slate-500 transition-colors"
             >
               <Menu size={20} />
             </button>
@@ -165,22 +165,22 @@ const MainLayout: React.FC<MainLayoutProps> = ({
               <button 
                 onClick={() => setIsAccountDropdownOpen(!isAccountDropdownOpen)}
                 className={`flex items-center gap-2 px-2.5 py-1.5 rounded-lg border transition-all max-w-[140px] xs:max-w-[200px] sm:max-w-none ${
-                  isAccountDropdownOpen ? 'bg-emerald-100 border-emerald-300' : 'bg-emerald-50 border-emerald-100 hover:bg-emerald-100'
+                  isAccountDropdownOpen ? 'bg-amber-100 border-amber-300' : 'bg-amber-50 border-amber-100 hover:bg-amber-100'
                 }`}
               >
-                <MapPin size={14} className="text-emerald-600 shrink-0" />
+                <MapPin size={14} className="text-amber-600 shrink-0" />
                 <div className="flex flex-col min-w-0 text-left">
-                  <span className="text-[8px] sm:text-[9px] font-bold text-emerald-500 uppercase leading-none truncate">Cabang Aktif</span>
-                  <span className="text-[10px] sm:text-xs font-bold text-emerald-900 truncate">{activeAccount.name}</span>
+                  <span className="text-[8px] sm:text-[9px] font-bold text-amber-500 uppercase leading-none truncate">Cabang Aktif</span>
+                  <span className="text-[10px] sm:text-xs font-bold text-amber-900 truncate">{activeAccount.name}</span>
                 </div>
                 {accounts.length > 1 && (
-                  <ChevronDown size={14} className={`text-emerald-600 transition-transform ${isAccountDropdownOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown size={14} className={`text-amber-600 transition-transform ${isAccountDropdownOpen ? 'rotate-180' : ''}`} />
                 )}
               </button>
 
               {isAccountDropdownOpen && accounts.length > 1 && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-slate-100 py-2 z-[100] animate-in fade-in slide-in-from-top-2">
-                  <div className="px-4 py-2 border-b border-slate-50 mb-1">
+                <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-amber-100 py-2 z-[100] animate-in fade-in slide-in-from-top-2">
+                  <div className="px-4 py-2 border-b border-amber-50 mb-1">
                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Pilih Cabang</p>
                   </div>
                   {accounts.map(account => (
@@ -190,17 +190,17 @@ const MainLayout: React.FC<MainLayoutProps> = ({
                         setActiveAccountId(account.id);
                         setIsAccountDropdownOpen(false);
                       }}
-                      className={`w-full px-4 py-3 text-left hover:bg-slate-50 transition-colors flex items-center gap-3 ${
-                        account.id === activeAccountId ? 'bg-emerald-50' : ''
+                      className={`w-full px-4 py-3 text-left hover:bg-amber-50 transition-colors flex items-center gap-3 ${
+                        account.id === activeAccountId ? 'bg-amber-50' : ''
                       }`}
                     >
                       <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                        account.id === activeAccountId ? 'bg-emerald-600 text-white' : 'bg-slate-100 text-slate-400'
+                        account.id === activeAccountId ? 'bg-amber-600 text-white' : 'bg-stone-100 text-slate-400'
                       }`}>
                         <Building2 size={14} />
                       </div>
                       <div className="min-w-0">
-                        <p className={`text-sm font-bold truncate ${account.id === activeAccountId ? 'text-emerald-700' : 'text-slate-800'}`}>
+                        <p className={`text-sm font-bold truncate ${account.id === activeAccountId ? 'text-amber-700' : 'text-slate-800'}`}>
                           {account.name}
                         </p>
                         <p className="text-[10px] text-slate-400 truncate">{account.address}</p>
@@ -216,7 +216,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
             <div className="relative" ref={notificationRef}>
               <button 
                 onClick={() => setIsNotificationOpen(!isNotificationOpen)}
-                className={`p-2 rounded-xl transition-all relative ${isNotificationOpen ? 'bg-emerald-50 text-emerald-600' : 'hover:bg-slate-100 text-slate-500'}`}
+                className={`p-2 rounded-xl transition-all relative ${isNotificationOpen ? 'bg-amber-50 text-amber-600' : 'hover:bg-stone-100 text-slate-500'}`}
               >
                 <Bell size={18} className="sm:w-5 sm:h-5" />
                 {lowStockProducts.length > 0 && (
@@ -224,8 +224,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({
                 )}
               </button>
               {isNotificationOpen && (
-                <div className="absolute right-0 mt-3 w-64 sm:w-80 bg-white rounded-2xl shadow-2xl border border-slate-100 py-2 z-[999] animate-in fade-in zoom-in-95 duration-200">
-                  <div className="px-4 py-2 border-b border-slate-50 flex items-center justify-between">
+                <div className="absolute right-0 mt-3 w-64 sm:w-80 bg-white rounded-2xl shadow-2xl border border-amber-100 py-2 z-[999] animate-in fade-in zoom-in-95 duration-200">
+                  <div className="px-4 py-2 border-b border-amber-50 flex items-center justify-between">
                     <h3 className="font-bold text-slate-800">Notifikasi</h3>
                     <span className="px-2 py-0.5 bg-red-50 text-red-600 text-[10px] font-bold rounded-full">{lowStockProducts.length} Stok Menipis</span>
                   </div>
@@ -236,7 +236,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({
                           key={product.id} 
                           to="/inventory"
                           onClick={() => setIsNotificationOpen(false)}
-                          className="px-4 py-3 hover:bg-slate-50 transition-colors flex items-start gap-3 border-b border-slate-50 last:border-0"
+                          className="px-4 py-3 hover:bg-amber-50 transition-colors flex items-start gap-3 border-b border-amber-50 last:border-0"
                         >
                           <div className="w-8 h-8 bg-red-50 text-red-500 rounded-lg flex items-center justify-center shrink-0">
                             <Package size={16} />
@@ -257,17 +257,17 @@ const MainLayout: React.FC<MainLayoutProps> = ({
               )}
             </div>
 
-            <div className="flex items-center gap-2 sm:gap-3 pl-1.5 sm:pl-4 border-l border-slate-100">
+            <div className="flex items-center gap-2 sm:gap-3 pl-1.5 sm:pl-4 border-l border-amber-100">
               <div className="text-right hidden sm:block">
                 <p className="text-[10px] sm:text-xs font-black text-slate-900 uppercase tracking-wider">SUPER ADMIN</p>
-                <p className="text-[8px] sm:text-[10px] text-emerald-600 font-black tracking-widest uppercase">Full Access</p>
+                <p className="text-[8px] sm:text-[10px] text-amber-600 font-black tracking-widest uppercase">Full Access</p>
               </div>
-              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-emerald-100 text-emerald-700 rounded-lg sm:rounded-xl flex items-center justify-center font-black text-xs sm:text-sm border-2 border-emerald-50 shrink-0">SA</div>
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-amber-100 text-amber-700 rounded-lg sm:rounded-xl flex items-center justify-center font-black text-xs sm:text-sm border-2 border-amber-50 shrink-0">SA</div>
             </div>
           </div>
         </header>
 
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 bg-slate-50/50">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8 bg-amber-50/50">
           <Outlet />
         </div>
       </main>
@@ -292,8 +292,8 @@ const SidebarItem: React.FC<{ to: string, icon: React.ReactNode, label: string, 
       onClick={onClick}
       className={`flex items-center gap-4 px-3 py-2.5 rounded-xl transition-all duration-200 group ${
         isActive 
-          ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-950/20' 
-          : 'text-emerald-100/80 hover:bg-emerald-800 hover:text-white'
+          ? 'bg-amber-600 text-white shadow-lg shadow-amber-950/20' 
+          : 'text-amber-100/80 hover:bg-amber-800 hover:text-white'
       } ${!expanded ? 'justify-center' : ''}`}
     >
       <span className={`shrink-0 transition-transform group-hover:scale-110 ${isActive ? 'scale-105' : ''}`}>{icon}</span>

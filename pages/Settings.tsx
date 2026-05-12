@@ -185,7 +185,7 @@ const Settings: React.FC<SettingsProps> = ({ accounts, activeAccountId, setActiv
     <div className="max-w-4xl mx-auto space-y-8 pb-20">
       <div>
         <h1 className="text-2xl font-bold text-slate-900">Pengaturan Cabang</h1>
-        <p className="text-slate-500">Kelola daftar cabang koperasi Anda. Setiap cabang memiliki data produk dan transaksi yang terpisah.</p>
+        <p className="text-slate-500">Kelola daftar cabang toko Anda. Setiap cabang memiliki data produk dan transaksi yang terpisah.</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -197,15 +197,15 @@ const Settings: React.FC<SettingsProps> = ({ accounts, activeAccountId, setActiv
         </div>
 
         <div className="md:col-span-2 space-y-4">
-          {isLoading && <div className="text-center text-sm text-emerald-600 animate-pulse">Memproses data...</div>}
+          {isLoading && <div className="text-center text-sm text-amber-600 animate-pulse">Memproses data...</div>}
           
           {accounts.map(account => (
             <div 
               key={account.id} 
               className={`p-5 rounded-2xl border transition-all ${
                 activeAccountId === account.id 
-                  ? 'bg-emerald-50 border-emerald-500 shadow-lg shadow-emerald-100/50' 
-                  : 'bg-white border-slate-200 hover:border-emerald-200'
+                  ? 'bg-amber-50 border-amber-500 shadow-lg shadow-amber-100/50' 
+                  : 'bg-white border-slate-200 hover:border-amber-200'
               }`}
             >
               {editingId === account.id ? (
@@ -214,7 +214,7 @@ const Settings: React.FC<SettingsProps> = ({ accounts, activeAccountId, setActiv
                     <label className="text-xs font-bold text-slate-400 uppercase">Nama Cabang</label>
                     <input 
                       type="text" 
-                      className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none font-bold text-slate-800"
+                      className="w-full px-4 py-2 bg-amber-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 outline-none font-bold text-slate-800"
                       value={formData.name}
                       onChange={e => setFormData({...formData, name: e.target.value})}
                       autoFocus
@@ -225,7 +225,7 @@ const Settings: React.FC<SettingsProps> = ({ accounts, activeAccountId, setActiv
                         <label className="text-xs font-bold text-slate-400 uppercase">Telepon</label>
                         <input 
                         type="text" 
-                        className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none"
+                        className="w-full px-4 py-2 bg-amber-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 outline-none"
                         value={formData.phone}
                         onChange={e => setFormData({...formData, phone: e.target.value})}
                         />
@@ -234,7 +234,7 @@ const Settings: React.FC<SettingsProps> = ({ accounts, activeAccountId, setActiv
                   <div className="space-y-1">
                     <label className="text-xs font-bold text-slate-400 uppercase">Alamat</label>
                     <textarea 
-                      className="w-full px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none resize-none h-20"
+                      className="w-full px-4 py-2 bg-amber-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-amber-500 outline-none resize-none h-20"
                       value={formData.address}
                       onChange={e => setFormData({...formData, address: e.target.value})}
                     />
@@ -243,14 +243,14 @@ const Settings: React.FC<SettingsProps> = ({ accounts, activeAccountId, setActiv
                     <button 
                       onClick={handleSave}
                       disabled={isLoading}
-                      className="flex items-center gap-2 px-6 py-2 bg-emerald-600 text-white rounded-xl font-bold text-sm shadow-lg shadow-emerald-200 hover:bg-emerald-700 transition-all active:scale-95 disabled:opacity-50"
+                      className="flex items-center gap-2 px-6 py-2 bg-amber-600 text-white rounded-xl font-bold text-sm shadow-lg shadow-amber-200 hover:bg-amber-700 transition-all active:scale-95 disabled:opacity-50"
                     >
                       {isLoading ? <Loader2 size={16} className="animate-spin"/> : <Save size={16} />} Simpan
                     </button>
                     <button 
                       onClick={() => setEditingId(null)}
                       disabled={isLoading}
-                      className="px-4 py-2 bg-slate-100 text-slate-600 rounded-xl font-bold text-sm hover:bg-slate-200 transition-colors"
+                      className="px-4 py-2 bg-stone-100 text-slate-600 rounded-xl font-bold text-sm hover:bg-slate-200 transition-colors"
                     >
                       Batal
                     </button>
@@ -260,14 +260,14 @@ const Settings: React.FC<SettingsProps> = ({ accounts, activeAccountId, setActiv
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex items-start gap-4">
                     <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 ${
-                      activeAccountId === account.id ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/30' : 'bg-slate-100 text-slate-400'
+                      activeAccountId === account.id ? 'bg-amber-600 text-white shadow-lg shadow-amber-600/30' : 'bg-stone-100 text-slate-400'
                     }`}>
                       <Building2 size={24} />
                     </div>
                     <div>
                       <h4 className="font-bold text-slate-800 text-lg">{account.name}</h4>
                       <p className="text-sm text-slate-500 leading-snug max-w-xs">{account.address}</p>
-                      <p className="text-xs font-bold text-emerald-600 mt-1">{account.phone}</p>
+                      <p className="text-xs font-bold text-amber-600 mt-1">{account.phone}</p>
                     </div>
                   </div>
                   <div className="flex flex-col gap-2 items-end">
@@ -282,13 +282,13 @@ const Settings: React.FC<SettingsProps> = ({ accounts, activeAccountId, setActiv
                           </button>
                           <button 
                             onClick={() => setActiveAccountId(account.id)}
-                            className="flex items-center gap-2 px-4 py-2 bg-white border border-emerald-200 text-emerald-700 rounded-xl text-xs font-black uppercase tracking-wider hover:bg-emerald-50 hover:border-emerald-300 transition-all shadow-sm"
+                            className="flex items-center gap-2 px-4 py-2 bg-white border border-amber-200 text-amber-700 rounded-xl text-xs font-black uppercase tracking-wider hover:bg-amber-50 hover:border-amber-300 transition-all shadow-sm"
                           >
                             <Check size={14} /> Pilih
                           </button>
                       </div>
                     ) : (
-                      <span className="text-[10px] font-black uppercase text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full text-center tracking-widest border border-emerald-200">Sedang Aktif</span>
+                      <span className="text-[10px] font-black uppercase text-amber-600 bg-amber-100 px-3 py-1 rounded-full text-center tracking-widest border border-amber-200">Sedang Aktif</span>
                     )}
                     <div className="flex gap-2">
                         <button 
@@ -296,14 +296,14 @@ const Settings: React.FC<SettingsProps> = ({ accounts, activeAccountId, setActiv
                             navigator.clipboard.writeText(account.id);
                             showAlert('Tersalin', 'ID Cabang berhasil disalin ke clipboard!');
                           }}
-                          className="p-2 text-slate-300 hover:text-emerald-500 hover:bg-emerald-50 rounded-lg transition-all"
+                          className="p-2 text-slate-300 hover:text-amber-500 hover:bg-amber-50 rounded-lg transition-all"
                           title="Salin ID Cabang"
                         >
                           <Copy size={16} />
                         </button>
                         <button 
                           onClick={() => startEditing(account)}
-                          className="text-slate-400 hover:text-emerald-600 text-xs font-bold underline decoration-slate-300 hover:decoration-emerald-500 underline-offset-4 transition-all px-2"
+                          className="text-slate-400 hover:text-amber-600 text-xs font-bold underline decoration-slate-300 hover:decoration-amber-500 underline-offset-4 transition-all px-2"
                         >
                           Edit Info
                         </button>
@@ -317,9 +317,9 @@ const Settings: React.FC<SettingsProps> = ({ accounts, activeAccountId, setActiv
           <button 
             onClick={() => handleSecurityCheck('ADD_BRANCH')}
             disabled={isLoading}
-            className="w-full flex items-center justify-center gap-2 p-5 border-2 border-dashed border-slate-300 rounded-3xl text-slate-400 hover:text-emerald-600 hover:border-emerald-400 hover:bg-emerald-50/50 transition-all group font-bold"
+            className="w-full flex items-center justify-center gap-2 p-5 border-2 border-dashed border-slate-300 rounded-3xl text-slate-400 hover:text-amber-600 hover:border-amber-400 hover:bg-amber-50/50 transition-all group font-bold"
           >
-            <div className="w-8 h-8 rounded-full bg-slate-100 text-slate-400 group-hover:bg-emerald-100 group-hover:text-emerald-500 flex items-center justify-center transition-colors">
+            <div className="w-8 h-8 rounded-full bg-stone-100 text-slate-400 group-hover:bg-amber-100 group-hover:text-amber-500 flex items-center justify-center transition-colors">
                 <Plus size={18} />
             </div>
             Tambah Cabang Baru
@@ -350,7 +350,7 @@ const Settings: React.FC<SettingsProps> = ({ accounts, activeAccountId, setActiv
             </button>
           </div>
           
-          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center">
+          <div className="p-4 rounded-2xl bg-amber-50 border border-slate-200 text-center">
              <p className="text-xs text-slate-400">
                 System ID: <span className="font-mono text-slate-600">{activeAccountId}</span>
              </p>
@@ -360,9 +360,9 @@ const Settings: React.FC<SettingsProps> = ({ accounts, activeAccountId, setActiv
 
       {isSecurityModalOpen && (
         <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-300">
-          <div className="bg-white rounded-[2.5rem] w-full max-w-md p-8 shadow-2xl border border-slate-100 animate-in zoom-in-95 slide-in-from-bottom-4 duration-300">
+          <div className="bg-white rounded-[2.5rem] w-full max-w-md p-8 shadow-2xl border border-amber-100 animate-in zoom-in-95 slide-in-from-bottom-4 duration-300">
             <div className="flex flex-col items-center text-center space-y-4">
-              <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center mb-2">
+              <div className="w-16 h-16 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center mb-2">
                 <Check size={32} />
               </div>
               <h2 className="text-2xl font-black text-slate-900 tracking-tight">Verifikasi Keamanan</h2>
@@ -375,7 +375,7 @@ const Settings: React.FC<SettingsProps> = ({ accounts, activeAccountId, setActiv
                 <input 
                   type="password"
                   placeholder="Kata Sandi"
-                  className="w-full px-6 py-4 bg-slate-50 border-2 border-slate-100 rounded-2xl outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition-all font-mono text-center tracking-widest"
+                  className="w-full px-6 py-4 bg-amber-50 border-2 border-amber-100 rounded-2xl outline-none focus:border-amber-500 focus:ring-4 focus:ring-amber-500/10 transition-all font-mono text-center tracking-widest"
                   value={passwordInput}
                   onChange={e => setPasswordInput(e.target.value)}
                   onKeyDown={e => e.key === 'Enter' && verifyPassword()}
@@ -385,13 +385,13 @@ const Settings: React.FC<SettingsProps> = ({ accounts, activeAccountId, setActiv
                 <div className="flex gap-3">
                   <button 
                     onClick={() => { setIsSecurityModalOpen(false); setPasswordInput(''); }}
-                    className="flex-1 px-6 py-4 bg-slate-100 text-slate-600 rounded-2xl font-bold text-sm hover:bg-slate-200 transition-all"
+                    className="flex-1 px-6 py-4 bg-stone-100 text-slate-600 rounded-2xl font-bold text-sm hover:bg-slate-200 transition-all"
                   >
                     Batal
                   </button>
                   <button 
                     onClick={verifyPassword}
-                    className="flex-1 px-6 py-4 bg-emerald-600 text-white rounded-2xl font-bold text-sm shadow-xl shadow-emerald-200 hover:bg-emerald-700 active:scale-95 transition-all"
+                    className="flex-1 px-6 py-4 bg-amber-600 text-white rounded-2xl font-bold text-sm shadow-xl shadow-amber-200 hover:bg-amber-700 active:scale-95 transition-all"
                   >
                     Konfirmasi
                   </button>

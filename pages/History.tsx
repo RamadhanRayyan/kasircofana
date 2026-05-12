@@ -70,7 +70,7 @@ const HistoryPage: React.FC<HistoryProps> = ({ transactions }) => {
     // Design Configuration (Same as POS)
     const margin = 5;
     const contentWidth = pageWidth - (margin * 2);
-    const primaryColor = [16, 185, 129]; // Emerald-600
+    const primaryColor = [16, 185, 129]; // amber-600
     const grayColor = [100, 116, 139]; // Slate-500
     const lightGray = [226, 232, 240]; // Slate-200
 
@@ -91,7 +91,7 @@ const HistoryPage: React.FC<HistoryProps> = ({ transactions }) => {
     let yPos = 10;
 
     // --- HEADER ---
-    doc.setFillColor(236, 253, 245); // Emerald-50 background
+    doc.setFillColor(236, 253, 245); // amber-50 background
     doc.roundedRect(margin, yPos, contentWidth, 25, 3, 3, 'F');
     
     yPos += 8;
@@ -163,7 +163,7 @@ const HistoryPage: React.FC<HistoryProps> = ({ transactions }) => {
     yPos += 6;
 
     // --- TOTALS SECTION ---
-    doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]); // Emerald-600
+    doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]); // amber-600
     doc.roundedRect(margin, yPos, contentWidth, 20, 2, 2, 'F');
     
     let totalY = yPos + 6;
@@ -240,7 +240,7 @@ const HistoryPage: React.FC<HistoryProps> = ({ transactions }) => {
                     onChange={(e) => setEndDate(e.target.value)}
                 />
               </div>
-              <button onClick={handleExportHistoryPDF} className="flex items-center justify-center gap-2 px-4 py-2 bg-emerald-600 text-white rounded-xl text-sm font-bold hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-100 active:scale-95">
+              <button onClick={handleExportHistoryPDF} className="flex items-center justify-center gap-2 px-4 py-2 bg-amber-600 text-white rounded-xl text-sm font-bold hover:bg-amber-700 transition-all shadow-lg shadow-amber-100 active:scale-95">
                 <Download size={18} />
                 Ekspor Riwayat
               </button>
@@ -248,13 +248,13 @@ const HistoryPage: React.FC<HistoryProps> = ({ transactions }) => {
           </div>
 
           <div className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden mt-6">
-            <div className="p-4 border-b border-slate-100">
+            <div className="p-4 border-b border-amber-100">
               <div className="relative max-w-sm">
                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
                 <input 
                   type="text" 
                   placeholder="Cari ID Transaksi..." 
-                  className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-emerald-500"
+                  className="w-full pl-10 pr-4 py-2 bg-amber-50 border border-slate-200 rounded-xl outline-none focus:ring-2 focus:ring-amber-500"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
@@ -264,14 +264,14 @@ const HistoryPage: React.FC<HistoryProps> = ({ transactions }) => {
             <div className="divide-y divide-slate-100">
               {filteredTransactions.length > 0 ? (
                 filteredTransactions.map(t => (
-                  <div key={t.id} className="p-4 hover:bg-slate-50/50 transition-colors flex flex-col sm:flex-row sm:items-center gap-4">
-                    <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center shrink-0">
+                  <div key={t.id} className="p-4 hover:bg-amber-50/50 transition-colors flex flex-col sm:flex-row sm:items-center gap-4">
+                    <div className="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center shrink-0">
                       <FileText size={24} />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="font-bold text-slate-900 truncate max-w-[150px]">{t.id.slice(0, 8)}...</span>
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase bg-emerald-100 text-emerald-600">
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase bg-amber-100 text-amber-600">
                           {t.paymentMethod}
                         </span>
                       </div>
@@ -285,11 +285,11 @@ const HistoryPage: React.FC<HistoryProps> = ({ transactions }) => {
                     </div>
                     <div className="text-right">
                       <p className="text-xs text-slate-500">Total Transaksi</p>
-                      <p className="text-lg font-bold text-emerald-700">{formatCurrency(t.total)}</p>
+                      <p className="text-lg font-bold text-amber-700">{formatCurrency(t.total)}</p>
                     </div>
                     <div className="flex gap-2">
                        {/* Updated button title */}
-                      <button onClick={() => handlePrintPreview(t)} className="p-2 text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 rounded-xl transition-all" title="Lihat Detail & Ekspor">
+                      <button onClick={() => handlePrintPreview(t)} className="p-2 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all" title="Lihat Detail & Ekspor">
                         <ChevronRight size={18} />
                       </button>
                     </div>
@@ -297,7 +297,7 @@ const HistoryPage: React.FC<HistoryProps> = ({ transactions }) => {
                 ))
               ) : (
                 <div className="p-20 text-center text-slate-500">
-                  <div className="w-16 h-16 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-amber-50 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Search size={32} className="text-slate-300" />
                   </div>
                   <p>Tidak ada riwayat transaksi yang ditemukan.</p>
@@ -313,9 +313,9 @@ const HistoryPage: React.FC<HistoryProps> = ({ transactions }) => {
             <div className="bg-white rounded-[32px] w-full max-w-xs overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-200 border border-white/20">
               
               {/* Receipt Header */}
-              <div className="p-4 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
+              <div className="p-4 bg-amber-50 border-b border-amber-100 flex items-center justify-between">
                 <h3 className="font-bold text-slate-800 flex items-center gap-2 text-sm">
-                  <FileText size={18} className="text-emerald-600"/> Detail Transaksi
+                  <FileText size={18} className="text-amber-600"/> Detail Transaksi
                 </h3>
                 <button onClick={() => setSelectedTransaction(null)} className="text-slate-400 hover:text-slate-600 bg-white p-1.5 rounded-full border border-slate-200 shadow-sm"><X size={16} /></button>
               </div>
@@ -323,15 +323,15 @@ const HistoryPage: React.FC<HistoryProps> = ({ transactions }) => {
                {/* Receipt Content - Digital Style - Compact */}
                <div className="p-5 text-slate-800 bg-white">
                   {/* Status Banner */}
-                  <div className="text-center mb-4 bg-emerald-50 rounded-xl p-3 border border-emerald-100">
-                     <div className="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-1.5">
+                  <div className="text-center mb-4 bg-amber-50 rounded-xl p-3 border border-amber-100">
+                     <div className="w-10 h-10 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mx-auto mb-1.5">
                         <FileText size={20} />
                      </div>
-                     <div className="text-[10px] font-black text-emerald-600 uppercase tracking-widest">Transaksi Berhasil</div>
+                     <div className="text-[10px] font-black text-amber-600 uppercase tracking-widest">Transaksi Berhasil</div>
                   </div>
                   
                   {/* Info Grid */}
-                  <div className="grid grid-cols-2 gap-4 text-[11px] mb-4 pb-4 border-b border-slate-100">
+                  <div className="grid grid-cols-2 gap-4 text-[11px] mb-4 pb-4 border-b border-amber-100">
                     <div>
                       <p className="text-slate-400 font-bold uppercase tracking-wider mb-0.5">Tanggal</p>
                       <p className="font-bold text-slate-700">{new Date(selectedTransaction.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' })}</p>
@@ -344,7 +344,7 @@ const HistoryPage: React.FC<HistoryProps> = ({ transactions }) => {
 
                   {/* Items List - Compact */}
                   <div className="space-y-2 mb-4">
-                     <div className="flex justify-between text-[9px] font-bold text-slate-400 uppercase tracking-widest bg-slate-50 p-1.5 rounded-lg mb-2">
+                     <div className="flex justify-between text-[9px] font-bold text-slate-400 uppercase tracking-widest bg-amber-50 p-1.5 rounded-lg mb-2">
                         <span>Produk</span>
                         <span>Total</span>
                      </div>
@@ -352,14 +352,14 @@ const HistoryPage: React.FC<HistoryProps> = ({ transactions }) => {
                         {selectedTransaction.items.map(item => (
                             <div key={item.id} className="flex justify-between items-start text-xs group">
                                 <div className="flex flex-col">
-                                    <span className="font-bold text-slate-800 group-hover:text-emerald-700 transition-colors line-clamp-2">
+                                    <span className="font-bold text-slate-800 group-hover:text-amber-700 transition-colors line-clamp-2">
 
                                       {item.name}
                                     </span>
                                     {item.selectedVariants && item.selectedVariants.length > 0 && (
                                       <div className="flex flex-wrap gap-1 mt-0.5">
                                         {item.selectedVariants.map((v, idx) => (
-                                          <span key={idx} className="text-[9px] font-bold text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">
+                                          <span key={idx} className="text-[9px] font-bold text-slate-500 bg-stone-100 px-1.5 py-0.5 rounded">
                                             + {v.name}
                                           </span>
                                         ))}
@@ -374,17 +374,17 @@ const HistoryPage: React.FC<HistoryProps> = ({ transactions }) => {
                   </div>
 
                   {/* Total Block - Digital Style Compact */}
-                  <div className="bg-emerald-600 text-white rounded-xl p-4 shadow-lg shadow-emerald-200">
+                  <div className="bg-amber-600 text-white rounded-xl p-4 shadow-lg shadow-amber-200">
                      <div className="flex justify-between items-center">
-                        <span className="text-[10px] font-bold text-emerald-100 uppercase tracking-widest">Total Bayar</span>
+                        <span className="text-[10px] font-bold text-amber-100 uppercase tracking-widest">Total Bayar</span>
                         <span className="text-lg font-black">{formatCurrency(selectedTransaction.total)}</span>
                      </div>
                   </div>
                </div>
 
                {/* Modal Footer Actions */}
-               <div className="p-4 border-t border-slate-100 bg-slate-50 flex gap-3">
-                  <button onClick={() => setSelectedTransaction(null)} className="flex-1 py-2.5 text-slate-600 font-bold text-xs bg-white border border-slate-200 rounded-xl hover:bg-slate-50 transition-colors">Tutup</button>
+               <div className="p-4 border-t border-amber-100 bg-amber-50 flex gap-3">
+                  <button onClick={() => setSelectedTransaction(null)} className="flex-1 py-2.5 text-slate-600 font-bold text-xs bg-white border border-slate-200 rounded-xl hover:bg-amber-50 transition-colors">Tutup</button>
                   <button onClick={handleExportReceipt} className="flex-1 py-2.5 text-white font-bold text-xs bg-slate-800 rounded-xl hover:bg-slate-900 shadow-lg shadow-slate-200 flex items-center justify-center gap-2 transition-all active:scale-95">
                       <Download size={16} /> Ekspor PDF
                   </button>

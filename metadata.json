@@ -1,6 +1,6 @@
 {
-  "name": "Toko Amanah",
-  "description": "A comprehensive Point of Sale system for Cooperatives (Koperasi) featuring inventory management, sales tracking, automated reports, and AI-powered business insights.",
+  "name": "Cofana Shop",
+  "description": "A comprehensive Point of Sale system for shops featuring inventory management, sales tracking, automated reports, and AI-powered business insights.",
   "requestFramePermissions": [
     "camera"
   ]

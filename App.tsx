@@ -11,7 +11,6 @@ import Login from './pages/Login';
 import MainLayout from './layouts/MainLayout';
 import KasirLayout from './layouts/KasirLayout';
 import { Product, Transaction, CooperativeAccount, UserRole } from './types';
-import { INITIAL_PRODUCTS, INITIAL_ACCOUNTS } from './constants';
 
 import { supabase } from './lib/supabaseClient';
 
@@ -47,7 +46,7 @@ const RequireAuth = ({ children, onAuthFetch }: { children: React.ReactElement, 
   }, [onAuthFetch]);
 
   if (session === null) {
-    return <div className="h-screen w-screen flex items-center justify-center"><div className="w-8 h-8 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin"></div></div>;
+    return <div className="h-screen w-screen flex items-center justify-center"><div className="w-8 h-8 border-4 border-amber-600 border-t-transparent rounded-full animate-spin"></div></div>;
   }
 
   if (!session) {
@@ -91,8 +90,12 @@ const App: React.FC = () => {
 
   // 1. Fetch Accounts (Branches) on Mount or Session Change
   useEffect(() => {
+    let isActive = true;
+
     const fetchAccounts = async () => {
       const { data, error } = await supabase.from('accounts').select('*').order('created_at', { ascending: true });
+
+      if (!isActive) return;
       
       if (data && data.length > 0) {
         setAccounts(data);
@@ -112,7 +115,7 @@ const App: React.FC = () => {
         }
       } else if (!error) {
         // Init default account logic if table empty
-        const defaultAccount = { name: 'Toko Amanah', address: 'Pusat', phone: '-' };
+        const defaultAccount = { name: 'Cofana Shop', address: 'Pusat', phone: '-' };
         const { data: newData } = await supabase.from('accounts').insert([defaultAccount]).select().single();
         if (newData) {
             setAccounts([newData]);
@@ -124,7 +127,21 @@ const App: React.FC = () => {
     
     // Use a short timeout to ensure Auth session is fully set in client headers
     const timer = setTimeout(fetchAccounts, 150);
-    return () => clearTimeout(timer);
+
+    const channel = supabase
+      .channel('accounts_realtime')
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table: 'accounts' },
+        () => fetchAccounts()
+      )
+      .subscribe();
+
+    return () => {
+      isActive = false;
+      clearTimeout(timer);
+      supabase.removeChannel(channel);
+    };
   }, [session?.user?.id, userRole]); // Trigger on user change or role change
 
   // 1b. Reactive Branch Selection - ONLY FOR KASIR
@@ -391,9 +408,9 @@ const App: React.FC = () => {
   }, [products]);
 
   if (isLoading) {
-    return <div className="h-screen w-screen flex items-center justify-center bg-slate-50">
+    return <div className="h-screen w-screen flex items-center justify-center bg-amber-50">
       <div className="flex flex-col items-center gap-4">
-        <div className="w-12 h-12 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin"></div>
+        <div className="w-12 h-12 border-4 border-amber-600 border-t-transparent rounded-full animate-spin"></div>
         <p className="text-slate-500 font-medium animate-pulse">Memuat aplikasi...</p>
       </div>
     </div>;

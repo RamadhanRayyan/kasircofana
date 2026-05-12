@@ -89,16 +89,16 @@ const Dashboard: React.FC<DashboardProps> = ({ products, transactions, lowStock,
     // Dynamic messages based on performance
     const performanceMessages = {
       up: [
-        "Performa koperasi hari ini cemerlang, terus melaju naik! 🚀",
+        "Performa toko hari ini cemerlang, terus melaju naik! 🚀",
         "Bisnis sedang dalam momentum positif — luar biasa!",
         "Grafik penjualan menunjukkan tren kenaikan yang menggembirakan.",
-        "Hari ini koperasi tampil prima, pertumbuhan terasa nyata!",
+        "Hari ini toko tampil prima, pertumbuhan terasa nyata!",
       ],
       stable: [
-        "Performa koperasi hari ini terpantau stabil dan konsisten.",
+        "Performa toko hari ini terpantau stabil dan konsisten.",
         "Operasional berjalan lancar, semuanya terkendali dengan baik.",
         "Kondisi bisnis dalam keadaan seimbang dan terjaga.",
-        "Koperasi bergerak steady, siap menghadapi tantangan baru.",
+        "Toko bergerak steady, siap menghadapi tantangan baru.",
       ],
       down: [
         "Performa hari ini sedikit melambat, tetap semangat!",
@@ -179,9 +179,9 @@ const Dashboard: React.FC<DashboardProps> = ({ products, transactions, lowStock,
           
           <div className="flex items-center gap-2 mt-2">
             {stats.performanceStatus === 'up' && (
-              <div className="flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 rounded-full">
-                <TrendingUp size={14} className="text-emerald-600" />
-                <span className="text-[10px] font-bold text-emerald-600">+{stats.performancePercent}%</span>
+              <div className="flex items-center gap-1.5 px-2.5 py-1 bg-amber-50 rounded-full">
+                <TrendingUp size={14} className="text-amber-600" />
+                <span className="text-[10px] font-bold text-amber-600">+{stats.performancePercent}%</span>
               </div>
             )}
             {stats.performanceStatus === 'down' && (
@@ -198,7 +198,7 @@ const Dashboard: React.FC<DashboardProps> = ({ products, transactions, lowStock,
             )}
           </div>
           <p className={`text-sm font-medium mt-2 italic ${
-            stats.performanceStatus === 'up' ? 'text-emerald-600' : 
+            stats.performanceStatus === 'up' ? 'text-amber-600' : 
             stats.performanceStatus === 'down' ? 'text-red-500' : 
             'text-slate-500'
           }`}>
@@ -209,7 +209,7 @@ const Dashboard: React.FC<DashboardProps> = ({ products, transactions, lowStock,
         {/* Date Range Filter & Status */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           <div className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-2xl shadow-sm">
-            <Calendar size={16} className="text-emerald-600" />
+            <Calendar size={16} className="text-amber-600" />
             <div className="flex items-center gap-2">
               <input 
                 type="date" 
@@ -229,7 +229,7 @@ const Dashboard: React.FC<DashboardProps> = ({ products, transactions, lowStock,
             </div>
           </div>
           <div className="flex items-center gap-3 px-4 py-2 bg-white border border-slate-200 rounded-2xl shadow-sm">
-            <span className="w-2.5 h-2.5 bg-emerald-500 rounded-full animate-ping"></span>
+            <span className="w-2.5 h-2.5 bg-amber-500 rounded-full animate-ping"></span>
             <span className="text-xs font-black text-slate-600 uppercase tracking-widest">Sistem Online</span>
           </div>
         </div>
@@ -246,7 +246,7 @@ const Dashboard: React.FC<DashboardProps> = ({ products, transactions, lowStock,
           title="Gross Sales" 
           value={formatCurrency(stats.grossSales)} 
           icon={<TrendingUp size={22} />} 
-          color="emerald"
+          color="amber"
         />
         <StatCard 
           title="Gross Profit" 
@@ -271,11 +271,11 @@ const Dashboard: React.FC<DashboardProps> = ({ products, transactions, lowStock,
 
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
         {/* Chart Area */}
-        <div className="xl:col-span-2 bg-white p-5 lg:p-7 rounded-[32px] shadow-sm border border-slate-100 flex flex-col">
+        <div className="xl:col-span-2 bg-white p-5 lg:p-7 rounded-[32px] shadow-sm border border-amber-100 flex flex-col">
           <div className="flex flex-col xs:flex-row xs:items-center justify-between gap-3 mb-6 sm:mb-8">
             <h3 className="font-black text-slate-800 uppercase tracking-wider text-[11px] sm:text-xs">Tren Gross Profit</h3>
             <div className="flex">
-              <div className="flex items-center gap-1.5 px-3 py-1 bg-emerald-50 text-emerald-600 rounded-full text-[9px] sm:text-[10px] font-black uppercase">Gross Profit</div>
+              <div className="flex items-center gap-1.5 px-3 py-1 bg-amber-50 text-amber-600 rounded-full text-[9px] sm:text-[10px] font-black uppercase">Gross Profit</div>
             </div>
           </div>
           <div className="h-56 xs:h-64 sm:h-72 lg:h-80 w-full font-mono">
@@ -299,7 +299,7 @@ const Dashboard: React.FC<DashboardProps> = ({ products, transactions, lowStock,
         </div>
 
         {/* Low Stock List */}
-        <div className="bg-white p-5 lg:p-7 rounded-[32px] shadow-sm border border-slate-100 flex flex-col h-full max-h-[500px] xl:max-h-none">
+        <div className="bg-white p-5 lg:p-7 rounded-[32px] shadow-sm border border-amber-100 flex flex-col h-full max-h-[500px] xl:max-h-none">
           <div className="flex items-center justify-between mb-6">
             <h3 className="font-black text-slate-800 uppercase tracking-wider text-sm">Peringatan Stok</h3>
             <span className="bg-red-50 text-red-600 px-2.5 py-1 rounded-full text-[10px] font-black">{lowStock.length} ITEM</span>
@@ -308,9 +308,9 @@ const Dashboard: React.FC<DashboardProps> = ({ products, transactions, lowStock,
             {lowStock.length > 0 ? (
               <>
                 {lowStock.slice((lowStockPage - 1) * LOW_STOCK_PER_PAGE, lowStockPage * LOW_STOCK_PER_PAGE).map(p => (
-                  <div key={p.id} className="flex items-center justify-between p-3.5 bg-slate-50 rounded-2xl border border-slate-100 group hover:border-emerald-200 hover:bg-emerald-50/30 transition-all">
+                  <div key={p.id} className="flex items-center justify-between p-3.5 bg-amber-50 rounded-2xl border border-amber-100 group hover:border-amber-200 hover:bg-amber-50/30 transition-all">
                     <div className="flex items-center gap-3 min-w-0">
-                      <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-300 font-black text-xs shrink-0 group-hover:border-emerald-200 transition-colors">
+                      <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-300 font-black text-xs shrink-0 group-hover:border-amber-200 transition-colors">
                         {p.name.charAt(0)}
                       </div>
                       <div className="min-w-0">
@@ -322,7 +322,7 @@ const Dashboard: React.FC<DashboardProps> = ({ products, transactions, lowStock,
                         </div>
                       </div>
                     </div>
-                    <ChevronRight size={16} className="text-slate-300 shrink-0 group-hover:text-emerald-500 transition-colors" />
+                    <ChevronRight size={16} className="text-slate-300 shrink-0 group-hover:text-amber-500 transition-colors" />
                   </div>
                 ))}
                 
@@ -331,7 +331,7 @@ const Dashboard: React.FC<DashboardProps> = ({ products, transactions, lowStock,
                     <button 
                       onClick={() => setLowStockPage(p => Math.max(1, p - 1))}
                       disabled={lowStockPage === 1}
-                      className="p-2 text-slate-400 hover:text-emerald-600 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                      className="p-2 text-slate-400 hover:text-amber-600 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                     >
                       <ChevronRight size={18} className="rotate-180" />
                     </button>
@@ -341,7 +341,7 @@ const Dashboard: React.FC<DashboardProps> = ({ products, transactions, lowStock,
                     <button 
                       onClick={() => setLowStockPage(p => Math.min(Math.ceil(lowStock.length / LOW_STOCK_PER_PAGE), p + 1))}
                       disabled={lowStockPage === Math.ceil(lowStock.length / LOW_STOCK_PER_PAGE)}
-                      className="p-2 text-slate-400 hover:text-emerald-600 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                      className="p-2 text-slate-400 hover:text-amber-600 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
                     >
                       <ChevronRight size={18} />
                     </button>
@@ -350,7 +350,7 @@ const Dashboard: React.FC<DashboardProps> = ({ products, transactions, lowStock,
               </>
             ) : (
               <div className="h-full flex flex-col items-center justify-center text-center py-12">
-                <div className="w-16 h-16 bg-emerald-50 text-emerald-500 rounded-[24px] flex items-center justify-center mb-4">
+                <div className="w-16 h-16 bg-amber-50 text-amber-500 rounded-[24px] flex items-center justify-center mb-4">
                   <Package size={32} />
                 </div>
                 <p className="text-slate-400 text-xs font-bold uppercase tracking-widest leading-relaxed">Semua Stok<br/>Tersedia Aman</p>
@@ -358,7 +358,7 @@ const Dashboard: React.FC<DashboardProps> = ({ products, transactions, lowStock,
             )}
           </div>
           {lowStock.length > 0 && (
-            <Link to="/inventory" className="mt-6 w-full py-3 bg-slate-100 text-slate-600 rounded-xl text-[11px] font-black uppercase tracking-widest text-center hover:bg-slate-200 transition-colors">
+            <Link to="/inventory" className="mt-6 w-full py-3 bg-stone-100 text-slate-600 rounded-xl text-[11px] font-black uppercase tracking-widest text-center hover:bg-slate-200 transition-colors">
               Buka Inventaris
             </Link>
           )}
@@ -372,15 +372,15 @@ const StatCard: React.FC<{ title: string, value: string, icon: React.ReactNode, 
   title, value, icon, color, isCritical 
 }) => {
   const colorMap: Record<string, string> = {
-    emerald: 'bg-emerald-100 text-emerald-600 border-emerald-50',
+    amber: 'bg-amber-100 text-amber-600 border-amber-50',
     blue: 'bg-blue-100 text-blue-600 border-blue-50',
     purple: 'bg-purple-100 text-purple-600 border-purple-50',
     red: 'bg-red-100 text-red-600 border-red-50',
-    slate: 'bg-slate-100 text-slate-400 border-slate-50'
+    slate: 'bg-stone-100 text-slate-400 border-amber-50'
   };
 
   return (
-    <div className={`p-4 lg:p-6 rounded-[28px] bg-white border ${isCritical ? 'border-red-200 shadow-md shadow-red-50' : 'border-slate-100'} shadow-sm flex flex-col justify-between transition-all hover:shadow-md h-fit`}>
+    <div className={`p-4 lg:p-6 rounded-[28px] bg-white border ${isCritical ? 'border-red-200 shadow-md shadow-red-50' : 'border-amber-100'} shadow-sm flex flex-col justify-between transition-all hover:shadow-md h-fit`}>
       <div className="flex items-start justify-between mb-4 lg:mb-6">
         <p className="text-[10px] lg:text-[11px] font-black text-slate-400 uppercase tracking-widest leading-none">{title}</p>
         <div className={`p-2 lg:p-3 rounded-2xl ${colorMap[color]} shrink-0 shadow-inner`}>
