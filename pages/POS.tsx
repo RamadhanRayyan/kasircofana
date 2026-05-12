@@ -142,6 +142,10 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
 
   const subtotal = cart.reduce((acc, item) => acc + (calculateItemPrice(item) * item.quantity), 0);
   const total = subtotal;
+  const totalCartItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const getProductCartQuantity = (productId: string) => cart
+    .filter(item => item.id === productId)
+    .reduce((acc, item) => acc + item.quantity, 0);
 
   const handleCheckout = async (method: Transaction['paymentMethod']) => {
     if (cart.length === 0 || isProcessing) return;
@@ -349,13 +353,21 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
 
             {/* Product Grid */}
             <div className="flex-1 overflow-y-auto grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-5 pb-40 md:pb-6 pr-2 items-start content-start custom-scrollbar">
-              {filteredProducts.map(product => (
+              {filteredProducts.map(product => {
+                const selectedQuantity = getProductCartQuantity(product.id);
+
+                return (
                 <button 
                   key={product.id}
                   onClick={() => addToCart(product)}
                   disabled={product.stock <= 0}
                   className={`group flex flex-col bg-white border border-amber-100 rounded-[32px] overflow-hidden hover:border-amber-400 hover:shadow-2xl hover:shadow-amber-900/10 transition-all duration-500 text-left p-5 h-full min-h-[180px] relative ${product.stock <= 0 ? 'opacity-40 grayscale pointer-events-none' : 'shadow-sm shadow-slate-200/50'}`}
                 >
+                  {selectedQuantity > 0 && (
+                    <span className="md:hidden absolute right-3 bottom-3 z-10 min-w-8 h-8 px-2 bg-amber-600 text-white rounded-2xl border-4 border-white shadow-xl shadow-amber-900/20 flex items-center justify-center text-[12px] font-black leading-none">
+                      {selectedQuantity}
+                    </span>
+                  )}
                   <div className="flex items-start justify-between mb-4">
                     <div className="w-10 h-10 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 shadow-sm border border-amber-100/50 group-hover:scale-110 transition-transform">
                       <Box size={18} />
@@ -381,7 +393,7 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
                     </div>
                   </div>
                 </button>
-              ))}
+              )})}
               {filteredProducts.length === 0 && (
                 <div className="col-span-full py-20 text-center">
                   <div className="w-20 h-20 bg-amber-50 rounded-[40px] flex items-center justify-center mx-auto mb-4 border border-amber-100">
@@ -401,7 +413,7 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
             <div className="p-5 sm:p-6 border-b border-amber-50 flex items-center justify-between bg-amber-50/30">
               <h3 className="font-black text-slate-800 flex items-center gap-3 text-sm xl:text-base uppercase tracking-widest">
                 <ShoppingCart size={20} className="text-amber-600" />
-                Keranjang <span className="bg-amber-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px]">{cart.reduce((a,b)=>a+b.quantity, 0)}</span>
+                  Keranjang <span className="bg-amber-600 text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px]">{totalCartItems}</span>
               </h3>
               <div className="flex items-center gap-4">
                 <button onClick={() => {
@@ -515,19 +527,35 @@ const POS: React.FC<POSProps> = ({ products, onCompleteTransaction, activeAccoun
             </div>
           </div>
 
-          {/* Floating Cart Button (Tablet/Mobile Only) */}
+          {/* Mobile Bottom Actions */}
           {!isMobileCartVisible && (
-            <button 
-              onClick={() => setIsMobileCartVisible(true)}
-              className="md:hidden fixed bottom-8 right-8 z-50 w-16 h-16 bg-amber-600 text-white rounded-[32px] shadow-2xl flex items-center justify-center animate-bounce shadow-amber-400/30"
-            >
-              <ShoppingCart size={28} />
-              {cart.length > 0 && (
-                <span className="absolute -top-1 -right-1 w-7 h-7 bg-red-500 text-[10px] font-black rounded-full flex items-center justify-center border-4 border-white">
-                  {cart.reduce((a,b)=>a+b.quantity, 0)}
-                </span>
-              )}
-            </button>
+            <div className="md:hidden fixed inset-x-0 bottom-0 z-40 p-4 bg-white/95 backdrop-blur-xl border-t border-amber-100 shadow-[0_-16px_40px_rgba(15,23,42,0.12)]">
+              <div className="flex gap-3 max-w-lg mx-auto">
+                <button
+                  onClick={() => handleCheckout('Cash')}
+                  disabled={cart.length === 0 || isProcessing}
+                  className="flex-[1.35] h-16 rounded-[24px] bg-amber-600 text-white shadow-xl shadow-amber-300/40 disabled:opacity-40 disabled:shadow-none disabled:cursor-not-allowed active:scale-95 disabled:active:scale-100 transition-all flex flex-col items-center justify-center gap-0.5 font-black uppercase tracking-widest"
+                >
+                  <span className="flex items-center gap-2 text-[12px]">
+                    {isProcessing ? <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" /> : <Banknote size={18} />}
+                    {isProcessing ? 'Proses' : 'Bayar'}
+                  </span>
+                  <span className="text-[10px] text-amber-100 tracking-normal normal-case">{formatCurrency(total)}</span>
+                </button>
+                <button
+                  onClick={() => setIsMobileCartVisible(true)}
+                  className="flex-1 h-16 rounded-[24px] bg-slate-900 text-white shadow-xl shadow-slate-400/30 active:scale-95 transition-all flex items-center justify-center gap-2 font-black uppercase text-[12px] tracking-widest relative"
+                >
+                  <ShoppingCart size={19} />
+                  Keranjang
+                  {totalCartItems > 0 && (
+                    <span className="absolute -top-2 -right-1 min-w-7 h-7 px-2 bg-red-500 text-[10px] font-black rounded-full flex items-center justify-center border-4 border-white">
+                      {totalCartItems}
+                    </span>
+                  )}
+                </button>
+              </div>
+            </div>
           )}
 
           {/* Success Modal - Screen Only */}

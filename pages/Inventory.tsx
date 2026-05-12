@@ -184,21 +184,21 @@ const Inventory: React.FC<InventoryProps> = ({ products, setProducts, activeAcco
     new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(val);
 
   return (
-    <div className="space-y-4 lg:space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-xl lg:text-2xl font-bold text-slate-900">Stok Barang {activeAccountName && <span className="text-amber-600">- {activeAccountName}</span>}</h1>
+    <div className="space-y-3 lg:space-y-6 pb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+        <div className="min-w-0">
+          <h1 className="text-lg lg:text-2xl font-bold text-slate-900 leading-tight">Stok Barang {activeAccountName && <span className="text-amber-600 block sm:inline truncate">- {activeAccountName}</span>}</h1>
           <p className="text-xs lg:text-sm text-slate-500">Kelola ketersediaan barang toko di cabang ini.</p>
         </div>
-        <button onClick={() => { resetForm(); setIsAddModalOpen(true); }} className="flex items-center justify-center gap-2 px-6 py-2.5 bg-amber-600 text-white rounded-xl font-bold hover:bg-amber-700 transition-all shadow-lg text-sm">
+        <button onClick={() => { resetForm(); setIsAddModalOpen(true); }} className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-3 sm:py-2.5 bg-amber-600 text-white rounded-2xl sm:rounded-xl font-bold hover:bg-amber-700 transition-all shadow-lg text-sm active:scale-95">
           <Plus size={20} /> Tambah Barang
         </button>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 lg:gap-4">
-        <StatItem icon={<Package size={20} />} color="blue" label="Total Barang" value={products.length} />
-        <StatItem icon={<X size={20} />} color="red" label="Zero Stock" value={products.filter(p => p.stock === 0).length} />
-        <StatItem icon={<AlertTriangle size={20} />} color="orange" label="Low Stock (1-7)" value={products.filter(p => p.stock > 0 && p.stock <= 7).length} />
+      <div className="grid grid-cols-3 gap-2 lg:gap-4">
+        <StatItem icon={<Package size={18} />} color="blue" label="Total Barang" value={products.length} />
+        <StatItem icon={<X size={18} />} color="red" label="Zero Stock" value={products.filter(p => p.stock === 0).length} />
+        <StatItem icon={<AlertTriangle size={18} />} color="orange" label="Low Stock" value={products.filter(p => p.stock > 0 && p.stock <= 7).length} />
       </div>
 
       <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
@@ -249,7 +249,52 @@ const Inventory: React.FC<InventoryProps> = ({ products, setProducts, activeAcco
           </div>
         )}
 
-        <div className="overflow-x-auto">
+        <div className="md:hidden p-3 space-y-3 bg-amber-50/30">
+          {paginatedProducts.length > 0 ? (
+            paginatedProducts.map((p) => (
+              <div key={p.id} className="bg-white border border-amber-100 rounded-2xl p-3 shadow-sm">
+                <div className="flex items-start gap-3">
+                  <div className="w-10 h-10 rounded-2xl bg-stone-100 flex items-center justify-center text-slate-400 shrink-0">
+                    <Box size={18} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="min-w-0">
+                        <h3 className="font-bold text-sm text-slate-800 truncate leading-tight">{p.name}</h3>
+                        <div className="flex items-center gap-1.5 mt-1">
+                          <span className="font-mono text-[9px] text-amber-600 bg-amber-50 px-1.5 py-0.5 rounded">{p.sku || '-'}</span>
+                          <span className="text-[9px] font-bold bg-stone-100 text-slate-600 px-1.5 py-0.5 rounded-full uppercase truncate max-w-[100px]">{p.category}</span>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-1 shrink-0">
+                        <button onClick={() => openEditModal(p)} className="w-8 h-8 flex items-center justify-center text-blue-600 bg-blue-50 rounded-xl active:scale-95"><Edit2 size={15} /></button>
+                        <button onClick={() => handleDeleteProduct(p.id)} className="w-8 h-8 flex items-center justify-center text-red-600 bg-red-50 rounded-xl active:scale-95"><Trash2 size={15} /></button>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2 mt-3 text-center">
+                      <div className="bg-slate-50 rounded-xl px-2 py-2">
+                        <p className="text-[9px] text-slate-400 font-bold uppercase">Beli</p>
+                        <p className="text-[10px] font-bold text-slate-600 truncate">{formatCurrency(p.cost)}</p>
+                      </div>
+                      <div className="bg-amber-50 rounded-xl px-2 py-2">
+                        <p className="text-[9px] text-amber-500 font-bold uppercase">Jual</p>
+                        <p className="text-[10px] font-black text-amber-700 truncate">{formatCurrency(p.price)}</p>
+                      </div>
+                      <div className={`rounded-xl px-2 py-2 ${p.stock === 0 ? 'bg-red-50' : p.stock <= 7 ? 'bg-orange-50' : 'bg-emerald-50'}`}>
+                        <p className={`text-[9px] font-bold uppercase ${p.stock === 0 ? 'text-red-500' : p.stock <= 7 ? 'text-orange-500' : 'text-emerald-600'}`}>Stok</p>
+                        <p className={`text-sm font-black leading-none ${p.stock === 0 ? 'text-red-600' : p.stock <= 7 ? 'text-orange-600' : 'text-emerald-700'}`}>{p.stock}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="py-12 text-center text-slate-400 text-sm">Tidak ada barang ditemukan.</div>
+          )}
+        </div>
+
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-left min-w-[800px]">
             <thead className="bg-amber-50 text-slate-500 text-[10px] font-bold uppercase tracking-wider">
               <tr>
@@ -306,11 +351,11 @@ const Inventory: React.FC<InventoryProps> = ({ products, setProducts, activeAcco
 
         {/* Pagination Controls */}
         {totalPages > 1 && (
-          <div className="px-4 lg:px-6 py-4 border-t border-amber-100 flex items-center justify-between">
-            <p className="text-xs text-slate-500">
+          <div className="px-3 lg:px-6 py-3 lg:py-4 border-t border-amber-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <p className="text-[11px] sm:text-xs text-slate-500 text-center sm:text-left">
               Menampilkan <span className="font-bold text-slate-800">{paginatedProducts.length}</span> dari <span className="font-bold text-slate-800">{filteredProducts.length}</span> barang
             </p>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center justify-center gap-1 sm:gap-2">
               <button 
                 onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
@@ -319,12 +364,12 @@ const Inventory: React.FC<InventoryProps> = ({ products, setProducts, activeAcco
               >
                 <ChevronRight size={18} className="rotate-180" />
               </button>
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-1 max-w-[220px] overflow-x-auto custom-scrollbar px-1">
                 {[...Array(totalPages)].map((_, i) => (
                   <button
                     key={i + 1}
                     onClick={() => setCurrentPage(i + 1)}
-                    className={`w-8 h-8 rounded-lg text-xs font-bold transition-all ${
+                    className={`w-8 h-8 rounded-lg text-xs font-bold transition-all shrink-0 ${
                       currentPage === i + 1 
                         ? 'bg-amber-600 text-white shadow-lg shadow-amber-200' 
                         : 'text-slate-400 hover:bg-stone-100'
@@ -348,13 +393,13 @@ const Inventory: React.FC<InventoryProps> = ({ products, setProducts, activeAcco
       </div>
 
       {isAddModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-          <div className="bg-white rounded-3xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl animate-in fade-in zoom-in-95">
-            <div className="p-5 lg:p-6 border-b border-amber-100 flex items-center justify-between sticky top-0 bg-white z-10">
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/50 p-0 sm:p-4">
+          <div className="bg-white rounded-t-[28px] sm:rounded-3xl w-full max-w-lg max-h-[92vh] sm:max-h-[90vh] overflow-y-auto shadow-2xl animate-in fade-in zoom-in-95">
+            <div className="p-4 lg:p-6 border-b border-amber-100 flex items-center justify-between sticky top-0 bg-white z-10">
               <h2 className="text-lg lg:text-xl font-bold text-slate-900">{formData.id ? 'Edit Barang' : 'Barang Baru'}</h2>
-              <button onClick={() => setIsAddModalOpen(false)} className="text-slate-400"><X size={24} /></button>
+              <button onClick={() => setIsAddModalOpen(false)} className="w-9 h-9 flex items-center justify-center text-slate-400 bg-stone-100 rounded-full"><X size={20} /></button>
             </div>
-            <form onSubmit={handleAddOrUpdateProduct} className="p-5 lg:p-6 space-y-4">
+            <form onSubmit={handleAddOrUpdateProduct} className="p-4 lg:p-6 space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <label className="text-xs font-semibold text-slate-700">Kode SKU</label>
@@ -448,9 +493,9 @@ const Inventory: React.FC<InventoryProps> = ({ products, setProducts, activeAcco
                   )}
                </div>
 
-              <div className="pt-4 flex gap-3">
-                <button type="button" onClick={() => setIsAddModalOpen(false)} className="flex-1 px-6 py-3 bg-stone-100 text-slate-700 rounded-xl font-bold text-xs">Batal</button>
-                <button type="submit" className="flex-1 px-6 py-3 bg-amber-600 text-white rounded-xl font-bold text-xs shadow-lg shadow-amber-100">{formData.id ? 'Perbarui' : 'Simpan'}</button>
+              <div className="pt-4 flex gap-3 sticky bottom-0 bg-white pb-1">
+                <button type="button" onClick={() => setIsAddModalOpen(false)} className="flex-1 px-6 py-3 bg-stone-100 text-slate-700 rounded-xl font-bold text-xs active:scale-95">Batal</button>
+                <button type="submit" className="flex-1 px-6 py-3 bg-amber-600 text-white rounded-xl font-bold text-xs shadow-lg shadow-amber-100 active:scale-95">{formData.id ? 'Perbarui' : 'Simpan'}</button>
               </div>
             </form>
           </div>
@@ -476,11 +521,11 @@ const StatItem: React.FC<{ icon: React.ReactNode, color: string, label: string, 
     orange: 'bg-orange-50 text-orange-500'
   };
   return (
-    <div className="bg-white p-3 lg:p-4 rounded-2xl border border-slate-200 flex items-center gap-3 lg:gap-4 shadow-sm">
-      <div className={`w-10 h-10 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center ${colors[color]}`}>{icon}</div>
-      <div>
-        <p className="text-[10px] lg:text-xs font-medium text-slate-500">{label}</p>
-        <p className="text-base lg:text-lg font-bold text-slate-900">{value}</p>
+    <div className="bg-white p-2.5 lg:p-4 rounded-2xl border border-slate-200 flex flex-col sm:flex-row items-center gap-1.5 sm:gap-3 lg:gap-4 shadow-sm text-center sm:text-left">
+      <div className={`w-8 h-8 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center ${colors[color]}`}>{icon}</div>
+      <div className="min-w-0">
+        <p className="text-[9px] lg:text-xs font-medium text-slate-500 leading-tight truncate">{label}</p>
+        <p className="text-base lg:text-lg font-bold text-slate-900 leading-tight">{value}</p>
       </div>
     </div>
   );

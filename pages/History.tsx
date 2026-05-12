@@ -264,33 +264,34 @@ const HistoryPage: React.FC<HistoryProps> = ({ transactions }) => {
             <div className="divide-y divide-slate-100">
               {filteredTransactions.length > 0 ? (
                 filteredTransactions.map(t => (
-                  <div key={t.id} className="p-4 hover:bg-amber-50/50 transition-colors flex flex-col sm:flex-row sm:items-center gap-4">
-                    <div className="w-12 h-12 bg-amber-100 text-amber-600 rounded-2xl flex items-center justify-center shrink-0">
-                      <FileText size={24} />
+                  <div key={t.id} className="px-3 py-2.5 sm:px-4 sm:py-3 hover:bg-amber-50/50 transition-colors flex items-center gap-3">
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 bg-amber-100 text-amber-600 rounded-xl sm:rounded-2xl flex items-center justify-center shrink-0">
+                      <FileText size={18} />
                     </div>
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className="font-bold text-slate-900 truncate max-w-[150px]">{t.id.slice(0, 8)}...</span>
-                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full uppercase bg-amber-100 text-amber-600">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-1.5 mb-0.5 min-w-0">
+                        <span className="font-bold text-[12px] sm:text-sm text-slate-900 truncate max-w-[110px] sm:max-w-[150px]">{t.id.slice(0, 8)}...</span>
+                        <span className="text-[8px] sm:text-[9px] font-bold px-1.5 py-0.5 rounded-full uppercase bg-amber-100 text-amber-600 shrink-0">
                           {t.paymentMethod}
                         </span>
                       </div>
-                      <p className="text-xs text-slate-500">
+                      <p className="text-[10px] sm:text-xs text-slate-500 truncate">
                         {new Date(t.date).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
                       </p>
                     </div>
-                    <div className="flex-1">
-                      <p className="text-xs text-slate-500">Item Terjual</p>
-                      <p className="text-sm font-medium text-slate-700">{t.items.length} Barang</p>
+                    <div className="hidden sm:block flex-1">
+                      <p className="text-[10px] text-slate-500">Item Terjual</p>
+                      <p className="text-xs font-medium text-slate-700">{t.items.length} Barang</p>
                     </div>
-                    <div className="text-right">
-                      <p className="text-xs text-slate-500">Total Transaksi</p>
-                      <p className="text-lg font-bold text-amber-700">{formatCurrency(t.total)}</p>
+                    <div className="text-right shrink-0">
+                      <p className="hidden sm:block text-[10px] text-slate-500">Total Transaksi</p>
+                      <p className="text-[12px] sm:text-base font-bold text-amber-700 leading-tight">{formatCurrency(t.total)}</p>
+                      <p className="sm:hidden text-[9px] text-slate-400 font-bold">{t.items.length} barang</p>
                     </div>
-                    <div className="flex gap-2">
+                    <div className="flex gap-1 shrink-0">
                        {/* Updated button title */}
-                      <button onClick={() => handlePrintPreview(t)} className="p-2 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all" title="Lihat Detail & Ekspor">
-                        <ChevronRight size={18} />
+                      <button onClick={() => handlePrintPreview(t)} className="p-1.5 sm:p-2 text-slate-400 hover:text-amber-600 hover:bg-amber-50 rounded-xl transition-all" title="Lihat Detail & Ekspor">
+                        <ChevronRight size={16} />
                       </button>
                     </div>
                   </div>
